@@ -173,11 +173,11 @@ on:
   push:
     branches: [ main ]
 jobs:
-  build_website	:
+  build_website:
     runs-on: self-hosted
     steps:
-      - run: cd ${{ github.workspace }}/project-documentation # enter the directory we want
-      - run: | # deal with the dependencies
+      - run: | # get inside the project and deal with the dependencies
+          cd ${{ github.workspace }}/project-documentation 
           if [ -e yarn.lock ]; then
             yarn install --frozen-lockfile
           elif [ -e package-lock.json ]; then
@@ -185,7 +185,9 @@ jobs:
           else
             npm i
           fi
-      - run: npm run build"
+      - run: |
+          cd ${{ github.workspace }}/project-documentation 
+          npm run build
 ```
 
 Be sure if have Node.Js installed on your Runner's VM (same version) !
