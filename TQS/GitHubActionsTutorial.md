@@ -176,6 +176,7 @@ jobs:
   build_website:
     runs-on: self-hosted
     steps:
+      - uses: actions/checkout@v3
       - run: | # get inside the project and deal with the dependencies
           cd ${{ github.workspace }}/project-documentation 
           if [ -e yarn.lock ]; then
@@ -208,7 +209,8 @@ on:
 jobs:
   build_website:
     runs-on: self-hosted
-    steps:
+    steps: 
+      - uses: actions/checkout@v3
       - run: | # get inside the project and deal with the dependencies
           cd ${{ github.workspace }}/project-documentation 
           if [ -e yarn.lock ]; then
